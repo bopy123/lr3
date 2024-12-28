@@ -23,9 +23,9 @@ class GildedRose {
         if (isAgedBrie(item) || isBackstage(item)) {
         	qualityDecrease(item);
             applySpecialRules(item);
-        } else {
-        	qualityDecrease(item);
+            return;
         }
+       	qualityDecrease(item);
     }
 
     private void updateSellIn(Item item) {
@@ -39,22 +39,22 @@ class GildedRose {
 
         if (isAgedBrie(item)) {
         	qualityIncrease(item);
+        	return;
             }
-        } else if (isBackstage(item)) {
+        if (isBackstage(item)) {
             item.quality = 0;
-        } else {
-        	qualityDecrease(item);
+            return
         }
+        qualityDecrease(item);
     }
 
     private void applySpecialRules(Item item) {
-        if (isBackstage(item)) {
-            if (item.sellIn < 11) {
-            	qualityIncrease(item);
-            }
-            if (item.sellIn < 6) {
-                qualityIncrease(item);
-            }
+        if (isBackstage(item)) return; 
+        if (item.sellIn < 11) {
+        	qualityIncrease(item);
+        }
+        if (item.sellIn < 6) {
+            qualityIncrease(item);
         }
     }
     
